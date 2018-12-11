@@ -1,6 +1,7 @@
 #include "urs100_driver/Urs100.h"
 
 #define _USE_MATH_DEFINES
+#define MAX_REC_DEPTH 15
 
 #include <math.h>
 
@@ -11,6 +12,7 @@ namespace urs100_driver {
         m_starter = "01";
         m_terminator = "\r\n";
         m_previous = 0.0;
+        m_rec_depth = 0;
 
         serial::Serial *serial_connection = new serial::Serial(port, baud, serial::Timeout::simpleTimeout(1000));;
         m_serial_handle = serial_connection;
@@ -39,7 +41,7 @@ namespace urs100_driver {
     void Urs100::setPosition(double pos) {
 
         double pos_deg = pos / M_PI * 180.0;
-        if (!this->m_is_blocking && (m_previous!=pos)) {
+        if (!this->m_is_blocking && (m_previous != pos)) {
             this->stopMotion();
         }
         this->sendCommand("PA", std::to_string(pos_deg));
@@ -78,14 +80,16 @@ namespace urs100_driver {
         std::string result = m_serial_handle->readline();
 
         try {
-
-            return std::stod(result.substr(4, result.find_first_of(m_terminator) - 4)) / 180.0 * M_PI;
-
+            double pos = std::stod(result.substr(4, result.find_first_of(m_terminator) - 4)) / 180.0 * M_PI;
+            m_rec_depth = 0;
+            return pos;
         }
         catch (const std::exception &e) {
-            // Manchmal gibt es absoluten Nonsens zurueck.
-            // TODO: Ist rekursiv eine gute Idee?
-            // Sonst return -1.0f;
+            if (m_rec_depth > MAX_REC_DEPTH) {
+                std::cout << "ERROR: Max recursion depth of " << MAX_REC_DEPTH <<  " was reached" << std::endl;
+                return -1;
+            }
+            m_rec_depth++;
             return this->getPosition();
         }
     }

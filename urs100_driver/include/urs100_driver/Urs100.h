@@ -42,6 +42,7 @@ namespace urs100_driver {
         std::string m_terminator;
         bool m_is_blocking;
         double m_previous;
+        int m_rec_depth;
     };
 }
 
