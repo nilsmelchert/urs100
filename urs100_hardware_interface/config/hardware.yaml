@@ -1,0 +1,5 @@
+urs100:
+  hardware_interface:
+     loop_hz: 10 # hz
+     joints:
+       - joint_urs100

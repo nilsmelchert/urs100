@@ -1,0 +1,22 @@
+<package>
+  <name>urs100</name>
+  <version>0.1.0</version>
+  <description>Packages for the rotary stage urs100 from newport using the smc100 controller (metapackage).</description>
+  <author>Nils Melchert</author>
+  <maintainer email="nils.melchert@imr.uni-hannover.de">Nils Melchert</maintainer>
+  <license>Apache2.0</license>
+
+  <url type="website">https://www.imr.uni-hannover.de/</url>
+
+  <buildtool_depend>catkin</buildtool_depend>
+
+  <run_depend>urs100_support</run_depend>
+  <!--<run_depend>staubli_tx90_gazebo</run_depend>-->
+  <!--<run_depend>staubli_tx90_support</run_depend>-->
+  <!--<run_depend>staubli_val3_driver</run_depend>-->
+
+  <export>
+    <metapackage/>
+    <architecture_independent/>
+  </export>
+</package>
