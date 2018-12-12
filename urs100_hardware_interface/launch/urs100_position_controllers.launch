@@ -11,5 +11,6 @@
           args="
             /urs100/controller/state
             /urs100/controller/position/joint_urs100
+            /urs100/controller/trajectory
         "/>
 </launch>
