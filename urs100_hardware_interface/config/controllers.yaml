@@ -3,6 +3,10 @@ urs100:
     state:
       type: joint_state_controller/JointStateController
       publish_rate: 50
+    trajectory:
+      type: position_controllers/JointTrajectoryController
+      joints:
+        - joint_urs100
     position:
       joint_urs100:
         type: position_controllers/JointPositionController
