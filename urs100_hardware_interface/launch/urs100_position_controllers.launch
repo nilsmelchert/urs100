@@ -10,7 +10,7 @@
     <node name="controller_spawner" pkg="controller_manager" type="spawner" respawn="true" output="screen" ns="/"
           args="
             /urs100/controller/state
-            /urs100/controller/position/joint_urs100
             /urs100/controller/trajectory
         "/>
 </launch>
+        <!--/urs100/controller/position/joint_urs100-->
