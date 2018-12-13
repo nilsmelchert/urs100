@@ -13,8 +13,8 @@ class Urs100JointPublisher:
         self.joint_pos_server()
 
     def send_command(self, req):
-            self.pub.publish(req.joint_pos)
-            return []
+        self.pub.publish(req.joint_pos)
+        return []
 
     def joint_pos_server(self):
         s = rospy.Service('urs_100_set_point', SetJointPos, self.send_command)
