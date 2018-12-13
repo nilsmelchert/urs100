@@ -1,3 +1,5 @@
+#!/usr/bin/env python
+
 import rospy
 from urs100_hardware_interface.srv import SetJointPos, SetJointPosRequest, SetJointPosResponse
 from std_msgs.msg import Float64
@@ -7,7 +9,7 @@ class Urs100JointPublisher:
 
     def __init__(self):
         rospy.init_node('urs_100_set_point_ss', anonymous=True)
-        self.pub = rospy.Publisher('joint_urs100_set_point_pub', Float64, queue_size=10)
+        self.pub = rospy.Publisher('/urs100/controller/position/joint_urs100/command', Float64, queue_size=10)
         self.joint_pos_server()
 
     def send_command(self, req):
