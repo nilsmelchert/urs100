@@ -8,20 +8,22 @@ project(urs100_hardware_interface)
 ## if COMPONENTS list like find_package(catkin REQUIRED COMPONENTS xyz)
 ## is used, also find other catkin packages
 find_package(catkin REQUIRED COMPONENTS
-  actionlib
-  control_msgs
-  control_toolbox
-  controller_manager
-  hardware_interface
-  joint_limits_interface
-  pluginlib
-  roscpp
-  serial
-  trajectory_msgs
-  transmission_interface
-  urdf
-  urs100_driver
-)
+        actionlib
+        control_msgs
+        control_toolbox
+        controller_manager
+        hardware_interface
+        joint_limits_interface
+        pluginlib
+        roscpp
+        rospy
+        serial
+        trajectory_msgs
+        transmission_interface
+        urdf
+        urs100_driver
+        message_generation
+        )
 
 # System dependencies are found with CMake's conventions
 # find_package(Boost REQUIRED COMPONENTS system)
@@ -64,11 +66,11 @@ find_package(catkin REQUIRED COMPONENTS
 # )
 
 ## Generate services in the 'srv' folder
-# add_service_files(
-#   FILES
-#   Service1.srv
-#   Service2.srv
-# )
+add_service_files(
+        FILES
+        SetJointPos.srv
+        #   Service2.srv
+)
 
 ## Generate actions in the 'action' folder
 # add_action_files(
@@ -78,10 +80,10 @@ find_package(catkin REQUIRED COMPONENTS
 # )
 
 ## Generate added messages and services with any dependencies listed here
-# generate_messages(
-#   DEPENDENCIES
-#   control_msgs#   trajectory_msgs
-# )
+generate_messages(
+        DEPENDENCIES
+        #   control_msgs#   trajectory_msgs
+)
 
 ################################################
 ## Declare ROS dynamic reconfigure parameters ##
@@ -113,10 +115,10 @@ find_package(catkin REQUIRED COMPONENTS
 ## CATKIN_DEPENDS: catkin_packages dependent projects also need
 ## DEPENDS: system dependencies of this project that dependent projects also need
 catkin_package(
-  INCLUDE_DIRS include
-  LIBRARIES urs100_hardware_interface
-  CATKIN_DEPENDS actionlib control_msgs control_toolbox controller_manager hardware_interface joint_limits_interface pluginlib roscpp serial trajectory_msgs transmission_interface urdf urs100_driver
-#  DEPENDS system_lib
+        INCLUDE_DIRS include
+        LIBRARIES urs100_hardware_interface
+        CATKIN_DEPENDS actionlib control_msgs control_toolbox controller_manager hardware_interface joint_limits_interface pluginlib roscpp rospy serial trajectory_msgs transmission_interface urdf urs100_driver message_runtime
+        #  DEPENDS system_lib
 )
 
 ###########
@@ -126,15 +128,15 @@ catkin_package(
 ## Specify additional locations of header files
 ## Your package locations should be listed before other locations
 include_directories(
-  include
-  include/${PROJECT_NAME}
-  ${catkin_INCLUDE_DIRS}
+        include
+        include/${PROJECT_NAME}
+        ${catkin_INCLUDE_DIRS}
 )
 
 ## Declare a C++ library
- add_library(${PROJECT_NAME}
-   src/urs100_hardware_interface.cpp
- )
+add_library(${PROJECT_NAME}
+        src/urs100_hardware_interface.cpp
+        )
 
 add_dependencies(${PROJECT_NAME} urs100_driver)
 
@@ -146,12 +148,12 @@ add_dependencies(${PROJECT_NAME} urs100_driver)
 target_link_libraries(${PROJECT_NAME}
         ${urs100_driver_LIBRARIES}
         ${catkin_LIBRARIES}
-)
+        )
 
 ## Declare a C++ executable
 ## With catkin_make all packages are built within a single CMake context
 ## The recommended prefix ensures that target names across packages don't collide
- add_executable(${PROJECT_NAME}_node src/urs100_hardware_interface_node.cpp)
+add_executable(${PROJECT_NAME}_node src/urs100_hardware_interface_node.cpp)
 
 
 ## Rename C++ executable without prefix
@@ -169,10 +171,10 @@ message("HEHEUIEWEWEFWEFWEFHJWEFWEL")
 message(${PROJECT_NAME})
 
 ## Specify libraries to link a library or executable target against
- target_link_libraries(${PROJECT_NAME}_node
- ${catkin_LIBRARIES}
- ${PROJECT_NAME}
- )
+target_link_libraries(${PROJECT_NAME}_node
+        ${catkin_LIBRARIES}
+        ${PROJECT_NAME}
+        )
 
 #############
 ## Install ##

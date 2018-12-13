@@ -49,6 +49,7 @@ namespace urs100_hardware_interface {
         JointStateHandle jointStateHandle(joint_names_[0], &joint_position_, &joint_velocity_, &joint_effort_);
         joint_state_interface_.registerHandle(jointStateHandle);
 
+
         // Create position joint interface
         JointHandle jointPositionHandle(jointStateHandle, &joint_position_command_);
         JointLimits limits;
