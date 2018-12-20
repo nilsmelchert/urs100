@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
 <robot xmlns:xacro="http://wiki.ros.org/xacro">
-    <xacro:macro name="urs100" params="prefix parent *origin">
+    <xacro:macro name="urs100_inverted" params="prefix parent *origin">
         <xacro:arg name="rotary_stage" default="false"/>
 
         <link
