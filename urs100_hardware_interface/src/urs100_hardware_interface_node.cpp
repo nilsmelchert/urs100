@@ -7,6 +7,6 @@ int main(int argc, char** argv)
     ros::AsyncSpinner spinner(1);
     spinner.start();
     urs100_hardware_interface::Urs100HardwareInterface Urs100Stage(nh);
-    ros::spin();
+    ros::waitForShutdown();
     return 0;
 }
