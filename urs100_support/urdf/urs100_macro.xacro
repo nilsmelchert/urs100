@@ -78,7 +78,7 @@
             <origin rpy="0 3.38638856238571E-49 0" xyz="0 0 0" />
             <parent link="rotation_base" />
             <child link="rotation_platform" />
-            <axis xyz="0 0 1" />
+            <axis xyz="0 0 -1" />
             <limit effort="0.0" lower="${radians(-165.0)}" upper="${radians(165.0)}" velocity="0.0" />
         </joint>
         <joint name="rotation_plate" type="fixed">
