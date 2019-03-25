@@ -10,7 +10,7 @@ import numpy as np
 class Urs100JointPublisher:
 
     def __init__(self):
-        rospy.init_node('urs_100_set_point_ss', anonymous=True)
+        rospy.init_node('urs100_set_point_ss', anonymous=True)
         self.is_blocking = rospy.get_param('~is_blocking', default=False)
         self.pub = rospy.Publisher('/urs100/controller/position/joint_urs100/command', Float64, queue_size=10)
         self.joint_pos_server()
@@ -24,7 +24,7 @@ class Urs100JointPublisher:
         return []
 
     def joint_pos_server(self):
-        s = rospy.Service('urs_100_set_point', SetJointPos, self.send_command)
+        s = rospy.Service('urs100_set_point', SetJointPos, self.send_command)
         rospy.loginfo("Ready to send joint positions to rotary stage urs100.")
         rospy.spin()
 
