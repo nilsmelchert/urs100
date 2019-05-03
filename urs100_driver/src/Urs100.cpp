@@ -38,6 +38,19 @@ namespace urs100_driver {
         m_serial_handle->write(pos_str);
     }
 
+    void Urs100::setVelocity(double vel) {
+
+        this->sendCommand("VA", std::to_string(vel));
+    }
+
+    double Urs100::getVelocity() {
+        std::string cmd_str = m_starter + "VA?" + m_terminator;
+        m_serial_handle->write(cmd_str);
+        std::string result = m_serial_handle->readline();
+        double vel = std::stod(result.substr(4, result.find_first_of(m_terminator) - 4));
+        return vel;
+    }
+
     void Urs100::setPosition(double pos) {
 
         double pos_deg = pos / M_PI * 180.0;

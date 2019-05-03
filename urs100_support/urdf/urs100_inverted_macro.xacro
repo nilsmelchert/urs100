@@ -1,124 +1,124 @@
 <?xml version="1.0"?>
 <robot xmlns:xacro="http://wiki.ros.org/xacro">
-    <xacro:macro name="urs100_inverted" params="prefix parent *origin">
-        <xacro:arg name="rotary_stage" default="false"/>
+<xacro:macro name="urs100_inverted" params="prefix parent *origin">
+    <xacro:arg name="rotary_stage" default="false"/>
 
-        <link
-                name="inner_rotation_platform">
-            <visual>
-                <origin
-                        xyz="0 0 0"
-                        rpy="0 0 0"/>
-                <geometry>
-                    <mesh
-                            filename="package://urs100_support/meshes/visual/inner_rotation_platform.stl"/>
-                </geometry>
-                <material
-                        name="">
-                    <color
-                            rgba="0.12156862745098 0.119607843137255 0.133333333333333 1"/>
-                </material>
-            </visual>
-            <collision>
-                <origin
-                        xyz="0 0 0"
-                        rpy="0 0 0"/>
-                <geometry>
-                    <mesh
-                            filename="package://urs100_support/meshes/collision/inner_rotation_platform.stl"/>
-                </geometry>
-            </collision>
-        </link>
-        <link
-                name="rotation_platform">
-            <visual>
-                <origin
-                        xyz="0 0 0"
-                        rpy="0 0 0"/>
-                <geometry>
-                    <mesh
-                            filename="package://urs100_support/meshes/visual/rotation_platform.stl"/>
-                </geometry>
-                <material
-                        name="">
-                    <color
-                            rgba="0.792156862745098 0.819607843137255 0.933333333333333 1"/>
-                </material>
-            </visual>
-            <collision>
-                <origin
-                        xyz="0 0 0"
-                        rpy="0 0 0"/>
-                <geometry>
-                    <mesh
-                            filename="package://urs100_support/meshes/collision/rotation_platform.stl"/>
-                </geometry>
-            </collision>
-        </link>
-        <link
-                name="rotation_base">
-            <visual>
-                <origin
-                        xyz="0 0 0"
-                        rpy="0 0 0"/>
-                <geometry>
-                    <mesh
-                            filename="package://urs100_support/meshes/visual/rotation_base.stl"/>
-                </geometry>
-                <material
-                        name="">
-                    <color
-                            rgba="0.12156862745098 0.119607843137255 0.133333333333333 1"/>
-                </material>
-            </visual>
-            <collision>
-                <origin
-                        xyz="0 0 0"
-                        rpy="0 0 0"/>
-                <geometry>
-                    <mesh
-                            filename="package://urs100_support/meshes/collision/rotation_base.stl"/>
-                </geometry>
-            </collision>
-        </link>
-
-        <joint
-                name="rotation_plate"
-                type="fixed">
-            <origin
-                    xyz="0.0 -0.03725 0.0"
-                    rpy="-1.5707963267949 -2.157041537713704e-31 -6.028485090085621e-17"/>
-            <parent
-                    link="inner_rotation_platform"/>
-            <child
-                    link="rotation_platform"/>
-        </joint>
-        <joint
-                name="joint_urs100"
-                type="revolute">
+    <link
+            name="inner_rotation_platform">
+        <visual>
             <origin
                     xyz="0 0 0"
-                    rpy="0.0 -3.3863885623857104e-49 0.0"/>
-            <parent
-                    link="rotation_platform"/>
-            <child
-                    link="rotation_base"/>
-            <axis
-                    xyz="0 0 1"/>
-            <limit lower="${radians(-165.0)}" upper="${radians(165.0)}" effort="0.0" velocity="0.0"/>
-        </joint>
-        <joint
-                name="base_stage"
-                type="fixed">
+                    rpy="0 0 0"/>
+            <geometry>
+                <mesh
+                        filename="package://urs100_support/meshes/visual/inner_rotation_platform.stl"/>
+            </geometry>
+            <material
+                    name="">
+                <color
+                        rgba="0.12156862745098 0.119607843137255 0.133333333333333 1"/>
+            </material>
+        </visual>
+        <collision>
             <origin
-                    xyz="0.0 -1.08 -0.19"
-                    rpy="0.0 0.0 ${radians(90.0)}"/>
+                    xyz="0 0 0"
+                    rpy="0 0 0"/>
+            <geometry>
+                <mesh
+                        filename="package://urs100_support/meshes/collision/inner_rotation_platform.stl"/>
+            </geometry>
+        </collision>
+    </link>
+    <link
+            name="rotation_platform">
+        <visual>
+            <origin
+                    xyz="0 0 0"
+                    rpy="0 0 0"/>
+            <geometry>
+                <mesh
+                        filename="package://urs100_support/meshes/visual/rotation_platform.stl"/>
+            </geometry>
+            <material
+                    name="">
+                <color
+                        rgba="0.792156862745098 0.819607843137255 0.933333333333333 1"/>
+            </material>
+        </visual>
+        <collision>
+            <origin
+                    xyz="0 0 0"
+                    rpy="0 0 0"/>
+            <geometry>
+                <mesh
+                        filename="package://urs100_support/meshes/collision/rotation_platform.stl"/>
+            </geometry>
+        </collision>
+    </link>
+    <link
+            name="rotation_base">
+        <visual>
+            <origin
+                    xyz="0 0 0"
+                    rpy="0 0 0"/>
+            <geometry>
+                <mesh
+                        filename="package://urs100_support/meshes/visual/rotation_base.stl"/>
+            </geometry>
+            <material
+                    name="">
+                <color
+                        rgba="0.12156862745098 0.119607843137255 0.133333333333333 1"/>
+            </material>
+        </visual>
+        <collision>
+            <origin
+                    xyz="0 0 0"
+                    rpy="0 0 0"/>
+            <geometry>
+                <mesh
+                        filename="package://urs100_support/meshes/collision/rotation_base.stl"/>
+            </geometry>
+        </collision>
+    </link>
 
-            <parent
-                    link="rotation_base"/>
-            <child
-                    link="base_link"/>
-        </joint>
+    <joint
+            name="rotation_plate"
+            type="fixed">
+        <origin
+                xyz="0.0 -0.03725 0.0"
+                rpy="-1.5707963267949 -2.157041537713704e-31 -6.028485090085621e-17"/>
+        <parent
+                link="inner_rotation_platform"/>
+        <child
+                link="rotation_platform"/>
+    </joint>
+    <joint
+            name="joint_urs100"
+            type="revolute">
+        <origin
+                xyz="0 0 0"
+                rpy="0.0 -3.3863885623857104e-49 0.0"/>
+        <parent
+                link="rotation_platform"/>
+        <child
+                link="rotation_base"/>
+        <axis
+                xyz="0 0 1"/>
+        <limit lower="${radians(-165.0)}" upper="${radians(165.0)}" effort="0.0" velocity="0.0"/>
+    </joint>
+    <joint
+            name="base_stage"
+            type="fixed">
+        <origin
+                xyz="0.0 -0.93 -0.205"
+                rpy="0.0 0.0 ${radians(90.0)}"/>
 
-    </xacro:macro>
+        <parent
+                link="rotation_base"/>
+        <child
+                link="base_link"/>
+    </joint>
+
+</xacro:macro>
 </robot>

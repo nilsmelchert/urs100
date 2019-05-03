@@ -3,8 +3,10 @@
     <rosparam file="$(find urs100_hardware_interface)/config/controllers.yaml" command="load"/>
     <rosparam file="$(find urs100_hardware_interface)/config/joint_limits.yaml" command="load"/>
 
+    <arg name="vel" default="50" />
     <node name="urs100_hardware_interface" pkg="urs100_hardware_interface" type="urs100_hardware_interface_node"
           output="screen">
+        <param name="velocity" value="$(arg vel)" />
         <remap from="/joint_states" to="/urs100/joint_states"/>
     </node>
     <node name="controller_spawner" pkg="controller_manager" type="spawner" respawn="true" output="screen" ns="/"

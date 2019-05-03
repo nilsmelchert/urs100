@@ -25,6 +25,10 @@ namespace urs100_driver {
 
         std::string readState();
 
+        void setVelocity(double vel);
+
+        double getVelocity();
+
         void setPosition(double pos);
 
         void goHome();

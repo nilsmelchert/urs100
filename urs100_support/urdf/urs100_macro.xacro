@@ -87,7 +87,7 @@
             <child link="inner_rotation_platform" />
         </joint>
         <joint name="base_stage" type="fixed">
-            <origin rpy="0.0151101321324 -0.00591980854257 -1.57079632679" xyz="0.918991153433 -0.261224724446 0.199700111584" />
+            <origin rpy="-0.00603762215549 -0.00335447579975 -1.57079632679" xyz="0.919514000262 -0.261610857563 0.189064256822" />
             <parent link="${parent}" />
             <child link="rotation_base" />
         </joint>

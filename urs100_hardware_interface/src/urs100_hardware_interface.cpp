@@ -18,7 +18,12 @@ namespace urs100_hardware_interface {
 //    urs100_hardware_interface::urs100HardwareInterface()
     Urs100HardwareInterface::Urs100HardwareInterface(ros::NodeHandle &nh) : nh_(nh),
                                                                             Urs100Stage("/dev/ttyUSB0", 57600, false) {
-        // TODO: get device name and baud rate from parameter server
+
+        // Setting speed by getting parameter from parameter server
+        ros::NodeHandlePtr private_nh(new ros::NodeHandle("~"));
+        double velocity;
+        private_nh->param<double>("velocity", velocity, 20);
+        Urs100Stage.setVelocity(velocity);
 
         init();
         controller_manager_.reset(new controller_manager::ControllerManager(this,
